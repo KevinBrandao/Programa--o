@@ -1,0 +1,95 @@
+Aula SQL_SERVE Comandos mais usados no dia a dia.
+
+
+## SELECT ## 
+Na frente de select pode se colocar * para trazer todas colunas ou especificar o nome da coluna da tabela.
+
+## From ## 
+Na frente de from nome_da_tabela. 
+select nome_da_coluna from nome_da_tabela
+
+select * from person.person;
+select firstName, lastName from person.person;
+
+##  Distinct ##
+È para não trazer registro duplicados.
+select distinct FirstName from person.person;
+
+## Where ## 
+Para trazer condições de alguma coluna/tabela. 
+select * from Production.Product where ID = 10;
+
+## Count ##
+Conta quantidade de algo, quero saber quantos User_id tem.
+select count(User_id) from person.person
+select ProductID, count(ProductID) as "COntagem" from Sales.SalesOrderDetail GRoup BY ProductID
+
+## Top ## 
+limitar quantidade de dados de um select, dessa forma ira apenas trazer a quantidade que foi adicionado no top valor_deseja.
+select top 10 * from production.product
+
+## Order By ## 
+Realizar ordenação, tanto ASC como DESC.
+select * from person.person order by FirstName asc
+select * from person.person order by FirstName desc
+select * from person.person order by FirstName asc lastName desc
+
+## Between ## .
+o Between é usado para encontrar valor entre um valor minimo e valor maximo
+select * from Production.Product where ListPrice between 1000 and 1500;
+select * from HumanResources.Employee where HireDate between '2009/01/01' and '2010/01/01';
+
+##  IN ##
+Nós usamos o operadir IN junto com o where, 
+para verificar se um valor correspondem com qualquer valor passado na lista de valores.
+select * from Production.Product where ListPrice in (10,1);
+select * from Production.Product where ListPrice not in (10,1);
+
+## LIKE ## 
+Vamos dizer que você quer encontrar uma pessoa no banco de dados que vc sabe que o noem dela era kev.... alguma coisa.
+
+select * from person.person where FirstName LIKE 'ovi%'
+select * from person.person where FirstName LIKE '%to'
+select * from person.person where FirstName LIKE '%to_'
+
+## MIN MAX SUM AVG ## 
+Funçoes de agregração basicamente agregam ou combinam dados de uma tabela em 1 resultado só.
+
+## SUM ## soma dos valores
+select top 10 sum(linetotal) from Sales.SalesOrderDetail 
+
+## MIN ## valor minimu
+select top 10 min(linetotal) from Sales.SalesOrderDetail 
+
+## MAX ## Valor maximo
+select top 10 max(linetotal) from Sales.SalesOrderDetail 
+
+## AVG ## Verificar media de valores
+select top 10 avg(linetotal) from Sales.SalesOrderDetail 
+
+## Group BY ##
+Agrupar dados
+select SpecialofferID, sum(Unitprice) as "SOMA" from Sales.SalesOrderDetail GRoup BY SpecialofferId;
+select ProductID, count(ProductID) as "COntagem" from Sales.SalesOrderDetail GRoup BY ProductID;
+
+## Having ##
+O having é basicamente muito usado em junção com o Group by para filtrar resultados de um agrupamento 
+De uma forma mais simples eu gosto de entender ele como basicamente um where para dados agrupados.
+
+slect coluna1, funcaoagregacao(coluna2)
+FROM nomeTabela
+Group by coluna1
+Having condicao;
+
+A grande deiferenca entre having e where.
+é que o Group by é aplicado dpois que os dados já foram agrpados, enquanto o where é aplicado antes dos dados serem agrupado.
+
+select Firstname, count(Firstname) as "QUandtidade" from Person.Person GRoup BY Firstname having COUNT(Firstname) > 10;
+select ProductID, SUM(LineTotal) as "TOTAL" from Sales.SalesOrderDetail GRoup BY ProductID HAVING SUM(LINETOTAL) BETWEEN 162200 AND 500000;
+
+## AS ## 
+Renomear nomes de colunas
+select
+FirstName as "priemiro nome",
+LastName as "segundo nome"
+from Person.Person
