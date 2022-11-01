@@ -1,0 +1,31 @@
+--  SQl aula 16 Inner Join 
+
+select c.cliente,c.nome,e.cidade
+from cliente c
+inner join endereco e on e.enderecoId = c.enderecoId
+
+select top 10 *
+from Person.Person
+
+select top 10 *
+from Person.EmailAddress
+
+select top 5 p.BusinessEntityID, p.FirstName, p.LastName, pe.EmailAddress
+from Person.Person as P
+inner join Person.EmailAddress PE on p.BusinessEntityID = pe.BusinessEntityID
+
+select top 5 pr.ListPrice, pr.name, pc.Name 
+from Production.Product Pr
+inner join Production.ProductSubcategory PC on PC.ProductSubcategoryID = pr.ProductSubcategoryID
+
+
+select top 5  BusinessEntityID as negocioID, name as nome, PhoneNumber as meuNumerogf, ppt.PhoneNumberTypeID as fr
+from person.PhoneNumberType ppt
+inner join person.PersonPhone pp on pp.PhoneNumberTypeID = ppt.PhoneNumberTypeID
+
+
+select top 10
+PA.AddressID as 'meu Inderece', PA.City as cidade, ps.StateProvinceID as algo, PA.PostalCode as estado 
+from Person.StateProvince ps
+inner join Person.Address PA on PA.StateProvinceID = ps.
+

@@ -1,0 +1,24 @@
+-- O OPERADOR UNION COMBINA DOIS OU MAIS RESULTADOS DE UM RESULTADO APENAS.
+
+SELECT Coluna1, Coluna2
+from tabela1
+union 
+select coluna1, coluna2
+from tabela2
+
+
+select [ProductID], [name], [productNumber]
+from Production.Product PP
+where name like '%chain%'
+union
+select [ProductID], [name], [productNumber]
+from Production.Product PP
+where name like '%decal%'
+
+select [ProductID], [name], [productNumber]
+from Production.Product PP
+where name like '%chain%'
+union
+select [ProductID], [name], [productNumber]
+from Production.Product PP
+where ProductNumber like '%l%'
