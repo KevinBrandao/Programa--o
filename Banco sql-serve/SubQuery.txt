@@ -1,0 +1,26 @@
+## subquery (subSelect) 
+
+Monte um relatorio para mim de todos os produtos cadastrasdos que tem preço de venda acima de media
+
+select avg(listPrice)
+from Production.Production
+
+select * 
+from Production.Production
+where listprice > 438.66
+
+select * 
+from Production.Production
+where listPrice > (SELECT avg(lisprice) from Production.Production)
+
+select firstname
+from person.person
+where businessentityId in (
+    SELECT businessentityId from humanresources.employee
+    where jobtitle = 'desing engineer'
+);
+
+select firstname
+from person.person p 
+inner join humanresources.employee E on p.businessentityId = e.businessentityId
+and e.jobtitle = 'desing engineer';

@@ -1,0 +1,14 @@
+##  Self join
+
+SELECT NOME_COLUNA
+from tabela a, tabela b
+where condicao
+
+select a.contactName, a.region, b.contactName, b.region
+from customers a, customers b
+where a.region = b.region
+
+
+selecionar apenas o ano
+
+where datapart(year, tabelaA.nomedacoluna) = datapart(year, tabelaB.nomedacoluna);
